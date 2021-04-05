@@ -26,4 +26,8 @@ RUN pipenv install --system
 # Copy project
 COPY . .
 
+# Create a user
+RUN useradd --create-home --shell /bin/bash huser
+USER huser
+
 CMD gunicorn hello_hddd.wsgi:application --bind 0.0.0.0:$PORT
